@@ -54,10 +54,10 @@ class ListLocationComponent extends Component {
           <table className="table table-striped table-bordered">
             <thead>
               <tr>
-                <th> Location First Name</th>
-                <th> Location Last Name</th>
-                <th> Location Email Id</th>
-                <th> Actions</th>
+                <th> Location </th>
+                <th> GPS</th>
+                <th> Image URL</th>
+            
               </tr>
             </thead>
             <tbody>
