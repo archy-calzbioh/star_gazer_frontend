@@ -102,9 +102,9 @@ function Weather() {
         Suggested Cities:
         <select value={cityName} onChange={handleCitySelect}>
           <option value="">--Select a city--</option>
-          {cityList.map(city => (
+          {/* {cityList.map(city => (
             <option key={city} value={city}>{city}</option>
-          ))}
+          ))} */}
         </select>
       </label>
     </div>
