@@ -1,29 +1,12 @@
-<<<<<<< HEAD
+ import Button from "react-bootstrap/Button";
+ import Container from "react-bootstrap/Container";
+ import Form from "react-bootstrap/Form";
+ import Nav from "react-bootstrap/Nav";
+ import Navbar from "react-bootstrap/Navbar";
+ import NavDropdown from "react-bootstrap/NavDropdown";
+ import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+ import axios from "axios";
 
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import './App.css';
-import AstronomyPicture from './AstronomyPicture';
-import CloudCover from './CloudCover';
-import SolarActivityData from './SolarActivityData';
-import SatelliteImagery from './SatelliteImagery';
-import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
-import axios from "axios";
-=======
-import React from "react";
->>>>>>> aea9039 (repurposed crud example with previous navbar partial)
-
-import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ListLocationComponent from "./components/ListLocationComponent";
-import HeaderComponent from "./components/HeaderComponent";
-import FooterComponent from "./components/FooterComponent";
-import CreateLocationComponent from "./components/CreateLocationComponent";
-import ViewLocationComponent from "./components/ViewLocationComponent";
 
  function NavScrollExample() {
    return (
@@ -36,22 +19,7 @@ import ViewLocationComponent from "./components/ViewLocationComponent";
            minHeight: "100vh",
          }}
        >
-           <Container>
-    <div>
-      <CloudCover />
-      <AstronomyPicture />
-      <SatelliteImagery />
-      <SolarActivityData />
-    </div>
-      <h1 className="text-center mt-4">React Bootstrap Example</h1>
-      <Button variant="primary" className="mt-4">
-        Primary Button
-      </Button>
-      <Alert variant="success" className="mt-4">
-        This is a success alert!
-      </Alert>
-    </Container>
-       <Navbar bg="light" expand="lg">
+         <Navbar bg="light" expand="lg">
            <Container fluid>
              <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
              <Navbar.Toggle aria-controls="navbarScroll" />
