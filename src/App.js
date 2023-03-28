@@ -8,8 +8,8 @@ import SatelliteImagery from './SatelliteImagery';
 function NASAInfo() {
   return (
     <div>
+      <CloudCover />
       <AstronomyPicture />
-      <ExoplanetData />
       <SatelliteImagery />
       <SolarActivityData />
     </div>
