@@ -1,16 +1,17 @@
 
- import Button from "react-bootstrap/Button";
- import Container from "react-bootstrap/Container";
- import Form from "react-bootstrap/Form";
- import Nav from "react-bootstrap/Nav";
- import Navbar from "react-bootstrap/Navbar";
- import NavDropdown from "react-bootstrap/NavDropdown";
- import './App.css';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import './App.css';
 import AstronomyPicture from './AstronomyPicture';
 import CloudCover from './CloudCover';
 import SolarActivityData from './SolarActivityData';
 import SatelliteImagery from './SatelliteImagery';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import axios from "axios";
 
 
  function NavScrollExample() {
