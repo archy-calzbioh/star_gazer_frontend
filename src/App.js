@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -13,9 +12,7 @@ import SolarActivityData from './SolarActivityData';
 import SatelliteImagery from './SatelliteImagery';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
 import axios from "axios";
-=======
 import React from "react";
->>>>>>> aea9039 (repurposed crud example with previous navbar partial)
 
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -42,6 +39,35 @@ import ViewLocationComponent from "./components/ViewLocationComponent";
       <AstronomyPicture />
       <SatelliteImagery />
       <SolarActivityData />
+function App() {
+  return (
+    <div
+      className="App"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
+      <Router>
+        <HeaderComponent />
+        <div className="container" style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<ListLocationComponent />} index />
+            <Route path="/locations" element={<ListLocationComponent />} />
+            <Route
+              path="/add-location/:id"
+              element={<CreateLocationComponent />}
+            />
+            <Route
+              path="/view-location/:id"
+              element={<ViewLocationComponent />}
+            />
+            {/* <Route path = "/update-location/:id" element = {<UpdateLocationComponent />} /> */}
+          </Routes>
+        </div>
+        <FooterComponent />
+      </Router>
     </div>
       <h1 className="text-center mt-4">React Bootstrap Example</h1>
       <Button variant="primary" className="mt-4">
