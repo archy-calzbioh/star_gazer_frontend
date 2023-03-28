@@ -5,15 +5,21 @@ class CreateLocationComponent extends Component {
   constructor(props) {
     super(props);
 
+    // Check if this.props.match and this.props.match.params are defined, and provide a default value if not
+    const id =
+      this.props.match && this.props.match.params
+        ? this.props.match.params.id
+        : null;
+
     this.state = {
-      // step 2
-      id: this.props.match.params.id,
-      firstName: "",
-      lastName: "",
-      emailId: "",
+      // Use the value of id obtained from the conditional check
+      id: id,
+      name: "",
+      gps: "",
+      imageUrl: "",
     };
-    this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
-    this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
+    this.changeNameHandler = this.changeNameHandler.bind(this);
+    this.changeGpsHandler = this.changeGpsHandler.bind(this);
     this.saveOrUpdateLocation = this.saveOrUpdateLocation.bind(this);
   }
 
@@ -26,9 +32,9 @@ class CreateLocationComponent extends Component {
       LocationService.getLocationById(this.state.id).then((res) => {
         let location = res.data;
         this.setState({
-          firstName: location.firstName,
-          lastName: location.lastName,
-          emailId: location.emailId,
+          name: location.name,
+          gps: location.gps,
+          imageUrl: location.imageUrl,
         });
       });
     }
@@ -36,9 +42,9 @@ class CreateLocationComponent extends Component {
   saveOrUpdateLocation = (e) => {
     e.preventDefault();
     let location = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      emailId: this.state.emailId,
+      name: this.state.name,
+      gps: this.state.gps,
+      imageUrl: this.state.imageUrl,
     };
     console.log("location => " + JSON.stringify(location));
 
@@ -54,16 +60,16 @@ class CreateLocationComponent extends Component {
     }
   };
 
-  changeFirstNameHandler = (event) => {
-    this.setState({ firstName: event.target.value });
+  changeNameHandler = (event) => {
+    this.setState({ name: event.target.value });
   };
 
-  changeLastNameHandler = (event) => {
-    this.setState({ lastName: event.target.value });
+  changeGpsHandler = (event) => {
+    this.setState({ gps: event.target.value });
   };
 
-  changeEmailHandler = (event) => {
-    this.setState({ emailId: event.target.value });
+  changeImageUrlHandler = (event) => {
+    this.setState({ imageUrl: event.target.value });
   };
 
   cancel() {
@@ -88,33 +94,33 @@ class CreateLocationComponent extends Component {
               <div className="card-body">
                 <form>
                   <div className="form-group">
-                    <label> First Name: </label>
+                    <label> Name: </label>
                     <input
-                      placeholder="First Name"
-                      name="firstName"
+                      placeholder="Name"
+                      name="name"
                       className="form-control"
-                      value={this.state.firstName}
-                      onChange={this.changeFirstNameHandler}
+                      value={this.state.name}
+                      onChange={this.changeNameHandler}
                     />
                   </div>
                   <div className="form-group">
-                    <label> Last Name: </label>
+                    <label> GPS Coordinates: </label>
                     <input
-                      placeholder="Last Name"
-                      name="lastName"
+                      placeholder="GPS Coordinates"
+                      name="gps"
                       className="form-control"
-                      value={this.state.lastName}
-                      onChange={this.changeLastNameHandler}
+                      value={this.state.gps}
+                      onChange={this.changeGpsHandler}
                     />
                   </div>
                   <div className="form-group">
-                    <label> Email Id: </label>
+                    <label> Image URL: </label>
                     <input
-                      placeholder="Email Address"
-                      name="emailId"
+                      placeholder="Image URL"
+                      name="imageUrl"
                       className="form-control"
-                      value={this.state.emailId}
-                      onChange={this.changeEmailHandler}
+                      value={this.state.imageUrl}
+                      onChange={this.changeImageUrlHandler}
                     />
                   </div>
 

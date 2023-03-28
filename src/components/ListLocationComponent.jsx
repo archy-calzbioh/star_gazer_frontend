@@ -1,101 +1,90 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import LocationService from "../services/LocationService";
+import { useNavigate } from "react-router-dom";
 
-class ListLocationComponent extends Component {
-  constructor(props) {
-    super(props);
+function ListLocationComponent() {
+  const [locations, setLocations] = useState([]);
 
-    this.state = {
-      locations: [],
-    };
-    this.addLocation = this.addLocation.bind(this);
-    this.editLocation = this.editLocation.bind(this);
-    this.deleteLocation = this.deleteLocation.bind(this);
-  }
+  // Get the navigate function from the useNavigate hook
+  const navigate = useNavigate();
 
-  deleteLocation(id) {
+  const deleteLocation = (id) => {
     LocationService.deleteLocation(id).then((res) => {
-      this.setState({
-        locations: this.state.locations.filter(
-          (location) => location.id !== id
-        ),
-      });
+      setLocations(locations.filter((location) => location.id !== id));
     });
-  }
-  viewLocation(id) {
-    this.props.history.push(`/view-location/${id}`);
-  }
-  editLocation(id) {
-    this.props.history.push(`/add-location/${id}`);
-  }
+  };
 
-  componentDidMount() {
+  const viewLocation = (id) => {
+    navigate(`/view-location/${id}`);
+  };
+
+  const editLocation = (id) => {
+    navigate(`/add-location/${id}`);
+  };
+
+  const addLocation = () => {
+    navigate("/add-location/_add");
+  };
+
+  useEffect(() => {
     LocationService.getLocations().then((res) => {
-      this.setState({ locations: res.data });
+      setLocations(res.data);
     });
-  }
+  }, []);
 
-  addLocation() {
-    this.props.history.push("/add-location/_add");
-  }
-
-  render() {
-    return (
-      <div>
-        <h2 className="text-center">Locations List</h2>
-        <div className="row">
-          <button className="btn btn-primary" onClick={this.addLocation}>
-            {" "}
-            Add Location
-          </button>
-        </div>
-        <br></br>
-        <div className="row">
-          <table className="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th> Location </th>
-                <th> GPS</th>
-                <th> Image URL</th>
-            
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.locations.map((location) => (
-                <tr key={location.id}>
-                  <td> {location.firstName} </td>
-                  <td> {location.lastName}</td>
-                  <td> {location.emailId}</td>
-                  <td>
-                    <button
-                      onClick={() => this.editLocation(location.id)}
-                      className="btn btn-info"
-                    >
-                      Update{" "}
-                    </button>
-                    <button
-                      style={{ marginLeft: "10px" }}
-                      onClick={() => this.deleteLocation(location.id)}
-                      className="btn btn-danger"
-                    >
-                      Delete{" "}
-                    </button>
-                    <button
-                      style={{ marginLeft: "10px" }}
-                      onClick={() => this.viewLocation(location.id)}
-                      className="btn btn-info"
-                    >
-                      View{" "}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+  return (
+    <div>
+      <h2 className="text-center">Locations List</h2>
+      <div className="row">
+        <button className="btn btn-primary" onClick={addLocation}>
+          Add Location
+        </button>
       </div>
-    );
-  }
+      <br></br>
+      <div className="row">
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th> Location </th>
+              <th> GPS</th>
+              <th> Image URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            {locations.map((location) => (
+              <tr key={location.id}>
+                <td> {location.location} </td>
+                <td> {location.gps}</td>
+                <td> {location.imageUrl}</td>
+                <td>
+                  <button
+                    onClick={() => editLocation(location.id)}
+                    className="btn btn-info"
+                  >
+                    Update
+                  </button>
+                  <button
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => deleteLocation(location.id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => viewLocation(location.id)}
+                    className="btn btn-info"
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default ListLocationComponent;
