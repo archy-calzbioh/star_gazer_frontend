@@ -14,12 +14,17 @@ class CreateLocationComponent extends Component {
     this.state = {
       // Use the value of id obtained from the conditional check
       id: id,
-      name: "",
+      astronomer: "",
+      location: "",
       gps: "",
       imageUrl: "",
+      description: "",
     };
-    this.changeNameHandler = this.changeNameHandler.bind(this);
+    this.changeAstronomerHandler = this.changeAstronomerHandler.bind(this);
+    this.changeLocationHandler = this.changeLocationHandler.bind(this);
     this.changeGpsHandler = this.changeGpsHandler.bind(this);
+    this.changeImageUrlHandler = this.changeImageUrlHandler.bind(this);
+    this.changeDescriptionHandler = this.changeDescriptionHandler.bind(this);
     this.saveOrUpdateLocation = this.saveOrUpdateLocation.bind(this);
   }
 
@@ -32,9 +37,11 @@ class CreateLocationComponent extends Component {
       LocationService.getLocationById(this.state.id).then((res) => {
         let location = res.data;
         this.setState({
-          name: location.name,
+          astronomer: location.astronomer,
+          location: location.location,
           gps: location.gps,
           imageUrl: location.imageUrl,
+          description: location.description,
         });
       });
     }
@@ -42,9 +49,11 @@ class CreateLocationComponent extends Component {
   saveOrUpdateLocation = (e) => {
     e.preventDefault();
     let location = {
-      name: this.state.name,
+      astronomer: this.state.astronomer,
+      location: this.state.location,
       gps: this.state.gps,
       imageUrl: this.state.imageUrl,
+      description: this.state.description,
     };
     console.log("location => " + JSON.stringify(location));
 
@@ -60,9 +69,12 @@ class CreateLocationComponent extends Component {
     }
   };
 
-  changeNameHandler = (event) => {
-    this.setState({ name: event.target.value });
+  changeAstronomerHandler = (event) => {
+    this.setState({ astronomer: event.target.value });
   };
+  changeLocationHandler = (event) => {
+    this.setState({ location: event.target.value });
+    };
 
   changeGpsHandler = (event) => {
     this.setState({ gps: event.target.value });
@@ -71,6 +83,10 @@ class CreateLocationComponent extends Component {
   changeImageUrlHandler = (event) => {
     this.setState({ imageUrl: event.target.value });
   };
+
+  changeDescriptionHandler = (event) => {  
+    this.setState({ description: event.target.value });
+    };
 
   cancel() {
     this.props.history.push("/locations");
@@ -94,15 +110,25 @@ class CreateLocationComponent extends Component {
               <div className="card-body">
                 <form>
                   <div className="form-group">
-                    <label> Name: </label>
+                    <label> Astronomer: </label>
                     <input
-                      placeholder="Name"
+                      placeholder="Astronomer"
                       name="name"
                       className="form-control"
-                      value={this.state.name}
-                      onChange={this.changeNameHandler}
+                      value={this.state.astronomer}
+                      onChange={this.changeAstronomerHandler}
                     />
                   </div>
+                  <div className="form-group">
+                    <label> Location: </label>
+                    <input
+                        placeholder="Location"
+                        name="location"
+                        className="form-control"
+                        value={this.state.location}
+                        onChange={this.changeLocationHandler}
+                    />
+                    </div>
                   <div className="form-group">
                     <label> GPS Coordinates: </label>
                     <input
@@ -123,6 +149,16 @@ class CreateLocationComponent extends Component {
                       onChange={this.changeImageUrlHandler}
                     />
                   </div>
+                  <div className="form-group"> 
+                    <label> Description: </label>   
+                    <input
+                        placeholder="Description"
+                        name="description"
+                        className="form-control"
+                        value={this.state.description}
+                        onChange={this.changeDescriptionHandler}
+                    />
+                    </div>
 
                   <button
                     className="btn btn-success"

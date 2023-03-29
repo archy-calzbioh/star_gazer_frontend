@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const LOCATION_API_BASE_URL = "http://localhost:8000/location";
+const LOCATION_API_BASE_URL = "http://localhost:8000/experiences";
 
 class LocationService {
   getLocations() {
@@ -16,6 +16,11 @@ class LocationService {
   }
 
   updateLocation(location, locationId) {
+    if (locationId === null || locationId === undefined) {
+      // Handle the case where locationId is null or undefined
+      console.error("Invalid locationId:", locationId);
+      return;
+    }
     return axios.put(LOCATION_API_BASE_URL + "/" + locationId, location);
   }
 
