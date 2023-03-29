@@ -8,18 +8,21 @@ function ListLocationComponent() {
   // Get the navigate function from the useNavigate hook
   const navigate = useNavigate();
 
-  const deleteLocation = (id) => {
-    LocationService.deleteLocation(id).then((res) => {
-      setLocations(locations.filter((location) => location.id !== id));
+  const deleteLocation = (location) => {
+    console.log("Location to delete:", location); // Log the location value
+    LocationService.deleteLocation(location).then((res) => {
+      setLocations(
+        locations.filter((locationItem) => locationItem.location !== location)
+      );
     });
   };
 
-  const viewLocation = (id) => {
-    navigate(`/view-location/${id}`);
+  const viewLocation = (location) => {
+    navigate(`/view-location/${location}`);
   };
 
-  const editLocation = (id) => {
-    navigate(`/add-location/${id}`);
+  const editLocation = (location) => {
+    navigate(`/add-location/${location}`);
   };
 
   const addLocation = () => {
@@ -53,29 +56,29 @@ function ListLocationComponent() {
             </tr>
           </thead>
           <tbody>
-            {locations.map((location) => (
-              <tr key={location.id}>
-                <td> {location.astronomer} </td>
-                <td> {location.location} </td>
-                <td> {location.gps} </td>
-                <td> {location.imageUrl} </td>
+            {locations.map((locationItem) => (
+              <tr key={locationItem.location}>
+                <td> {locationItem.astronomer} </td>
+                <td> {locationItem.location} </td>
+                <td> {locationItem.gps} </td>
+                <td> {locationItem.imageUrl} </td>
                 <td>
                   <button
-                    onClick={() => editLocation(location.id)}
+                    onClick={() => editLocation(locationItem.location)}
                     className="btn btn-info"
                   >
                     Update
                   </button>
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => deleteLocation(location.id)}
+                    onClick={() => deleteLocation(locationItem.location)}
                     className="btn btn-danger"
                   >
                     Delete
                   </button>
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => viewLocation(location.id)}
+                    onClick={() => viewLocation(locationItem.location)}
                     className="btn btn-info"
                   >
                     View
@@ -91,3 +94,4 @@ function ListLocationComponent() {
 }
 
 export default ListLocationComponent;
+         
