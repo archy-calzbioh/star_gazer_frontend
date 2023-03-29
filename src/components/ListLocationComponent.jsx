@@ -45,17 +45,20 @@ function ListLocationComponent() {
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
+              <th> Astronomer </th>
               <th> Location </th>
-              <th> GPS</th>
-              <th> Image URL</th>
+              <th> GPS </th>
+              <th> Image URL </th>
+              <th> Actions </th>
             </tr>
           </thead>
           <tbody>
             {locations.map((location) => (
               <tr key={location.id}>
+                <td> {location.astronomer} </td>
                 <td> {location.location} </td>
-                <td> {location.gps}</td>
-                <td> {location.imageUrl}</td>
+                <td> {location.gps} </td>
+                <td> {location.imageUrl} </td>
                 <td>
                   <button
                     onClick={() => editLocation(location.id)}

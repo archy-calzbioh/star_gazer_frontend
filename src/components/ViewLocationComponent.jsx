@@ -1,3 +1,6 @@
+import React, { Component } from "react";
+import LocationService from "../services/LocationService";
+
 class ViewLocationComponent extends Component {
   constructor(props) {
     super(props);
