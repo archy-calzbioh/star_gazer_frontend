@@ -1,6 +1,3 @@
-import React, { Component } from "react";
-import LocationService from "../services/LocationService";
-
 class ViewLocationComponent extends Component {
   constructor(props) {
     super(props);
@@ -25,16 +22,24 @@ class ViewLocationComponent extends Component {
           <h3 className="text-center"> View Location Details</h3>
           <div className="card-body">
             <div className="row">
-              <label> Location First Name: </label>
-              <div> {this.state.location.firstName}</div>
+              <label> Astronomer: </label>
+              <div> {this.state.location.astronomer}</div>
             </div>
             <div className="row">
-              <label> Location Last Name: </label>
-              <div> {this.state.location.lastName}</div>
+              <label> Location: </label>
+              <div> {this.state.location.location}</div>
             </div>
             <div className="row">
-              <label> Location Email ID: </label>
-              <div> {this.state.location.emailId}</div>
+              <label> GPS Coordinates: </label>
+              <div> {this.state.location.gps}</div>
+            </div>
+            <div className="row">
+              <label> Image URL: </label>
+              <div> {this.state.location.imageUrl}</div>
+            </div>
+            <div className="row">
+              <label> Description: </label>
+              <div> {this.state.location.description}</div>
             </div>
           </div>
         </div>

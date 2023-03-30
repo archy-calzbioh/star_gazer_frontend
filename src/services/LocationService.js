@@ -12,14 +12,19 @@ class LocationService {
   }
 
   getLocationById(locationId) {
+    // Check if locationId is null or undefined
+    if (locationId === null || locationId === undefined) {
+      // Return a rejected promise with an error message
+      return Promise.reject(new Error("Invalid locationId"));
+    }
     return axios.get(LOCATION_API_BASE_URL + "/" + locationId);
   }
 
   updateLocation(location, locationId) {
+    // Check if locationId is null or undefined
     if (locationId === null || locationId === undefined) {
-      // Handle the case where locationId is null or undefined
-      console.error("Invalid locationId:", locationId);
-      return;
+      // Return a rejected promise with an error message
+      return Promise.reject(new Error("Invalid locationId"));
     }
     return axios.put(LOCATION_API_BASE_URL + "/" + locationId, location);
   }
