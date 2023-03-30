@@ -168,7 +168,7 @@ const StarChart = () => {
         <div className="column column-25">
           <h3>Star Chart</h3>
           <p>
-            This demo page utilizes the /v2/studio/star-chart endpoint to generate star charts.
+            this page uses /v2/studio/star-chart api endpoint to generate star charts.
           </p>
           <form>
             <fieldset>
