@@ -60,8 +60,8 @@ function ListLocationComponent() {
                 {/* Add the key prop here */}
                 <td> {location.astronomer} </td>
                 <td> {location.location} </td>
-                <td> {location.gps} </td>
-                <td> {location.imageUrl} </td>
+                <td> {location.coordinates} </td>
+                <td> {location.image} </td>
                 <td>
                   <button
                     onClick={() => editLocation(location.id)}
