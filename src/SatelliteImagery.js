@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
+import axios from 'axios';
+import './App.css';
 function SatelliteImagery() {
   const [imagery, setImagery] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.nasa.gov/planetary/earth/assets?lon=YOUR_LONGITUDE_HERE&lat=YOUR_LATITUDE_HERE&date=YYYY-MM-DD&dim=0.10&api_key=YOUR_API_KEY_HERE')
+    fetch('https://api.nasa.gov/planetary/earth/assets?lon=YOUR_LONGITUDE_HERE&lat=YOUR_LATITUDE_HERE&date=YYYY-MM-DD&dim=0.10&api_key=fFek0AUwa9FcL7VJiAWIA0nDTi1AzsxcOgNNDtLL')
       .then(response => response.json())
       .then(data => setImagery(data))
       .catch(error => console.log(error));

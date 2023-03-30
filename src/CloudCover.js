@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import './App.css';
+const cityList = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia'];
 function Weather() {
   const [cityName, setCityName] = useState('');
   const [weatherData, setWeatherData] = useState({
