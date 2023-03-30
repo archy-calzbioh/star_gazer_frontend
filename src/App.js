@@ -3,55 +3,43 @@ import AstronomyPicture from './AstronomyPicture';
 import CloudCover from './CloudCover';
 import SolarActivityData from './SolarActivityData';
 import SatelliteImagery from './SatelliteImagery';
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ConstellationLookup from './ConsetellationLookup';
 import ListLocationComponent from "./components/ListLocationComponent";
-import HeaderComponent from "./components/HeaderComponent";
-import FooterComponent from "./components/FooterComponent";
 import CreateLocationComponent from "./components/CreateLocationComponent";
 import ViewLocationComponent from "./components/ViewLocationComponent";
+// Import the Routes and Route components from react-router-dom
 
- function NavScrollExample() {
-   return (
-     <>
-       <Container>
-         <div
-           className="App"
-           style={{
-             display: "flex",
-             flexDirection: "column",
-             minHeight: "100vh",
-           }}
-         >
-           <Router>
-             <HeaderComponent />
-             <div>
-               <CloudCover />
-               <AstronomyPicture />
-               <SatelliteImagery />
-               <SolarActivityData />
-             </div>
-             <div className="container" style={{ flex: 1 }}>
-               <Routes>
-                 <Route path="/" element={<ListLocationComponent />} index />
-                 <Route path="/locations" element={<ListLocationComponent />} />
-                 <Route
-                   path="/add-location/:id"
-                   element={<CreateLocationComponent />}
-                 />
-                 <Route
-                   path="/view-location/:id"
-                   element={<ViewLocationComponent />}
-                 />
-                 {/* <Route path = "/update-location/:id" element = {<UpdateLocationComponent />} /> */}
-               </Routes>
-             </div>
-             <FooterComponent />
-           </Router>
-         </div>
-       </Container>
-     </>
-   );
- }
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-export default NavScrollExample;
+
+function NASAInfo() {
+  return (
+    <div>
+      <CloudCover />
+      <Router>
+        {" "}
+        {/* Add the Router component here */}
+        <Routes>
+          <Route path="/" element={<ListLocationComponent />} index />
+          <Route path="/locations" element={<ListLocationComponent />} />
+          <Route
+            path="/add-location/:id"
+            element={<CreateLocationComponent />}
+          />
+          <Route
+            path="/view-location/:id"
+            element={<ViewLocationComponent />}
+          />
+          {/* <Route path = "/update-location/:id" element = {<UpdateLocationComponent />} /> */}
+        </Routes>
+      </Router>{" "}
+      {/* Close the Router component here */}
+      <ConstellationLookup />
+      <AstronomyPicture />
+      <SatelliteImagery />
+      <SolarActivityData />
+    </div>
+  );
+}
+
+export default NASAInfo;
