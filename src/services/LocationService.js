@@ -20,19 +20,16 @@ class LocationService {
     return axios.get(LOCATION_API_BASE_URL + "/" + id);
   }
 
-
-  updateLocation(location, updatedLocationData) {
-    // Check if location is null or undefined
-    if (location === null || location === undefined) {
+  updateLocation(locationData, locationId) {
+    // Check if locationId is null or undefined
+    if (locationId === null || locationId === undefined) {
       // Return a rejected promise with an error message
-      return Promise.reject(new Error("Invalid location"));
+      return Promise.reject(new Error("Invalid locationId"));
     }
-    // Encode the location value to safely include it in the URL
-    const encodedLocation = encodeURIComponent(location);
-    return axios.put(
-      LOCATION_API_BASE_URL + "/" + encodedLocation,
-      updatedLocationData
-    );
+    // Construct the URL using the locationId parameter
+    const url = LOCATION_API_BASE_URL + "/" + locationId;
+    // Make the PUT request to update the location
+    return axios.put(url, locationData);
   }
 
   deleteLocation(locationId) {

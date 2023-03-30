@@ -6,14 +6,15 @@ const CreateLocationComponent = () => {
   const { id: paramId } = useParams();
   const navigate = useNavigate();
 
-  const [state, setState] = useState({
-    id: paramId !== undefined ? paramId : "_add",
-    astronomer: "",
-    location: "",
-    gps: "",
-    imageUrl: "",
-    description: "",
-  });
+const [state, setState] = useState({
+  id: paramId || "_add",
+  astronomer: "",
+  location: "",
+  gps: "",
+  imageUrl: "",
+  description: "",
+});
+
 
 useEffect(() => {
   if (state.id === "_add") {
@@ -22,6 +23,7 @@ useEffect(() => {
     LocationService.getLocationById(state.id).then((res) => {
       let location = res.data;
       setState({
+        id: location.id, // Update the value of state.id
         astronomer: location.astronomer,
         location: location.location,
         gps: location.gps,
@@ -31,6 +33,7 @@ useEffect(() => {
     });
   }
 }, [state.id]);
+
 
 
   const saveOrUpdateLocation = (e) => {
@@ -44,6 +47,9 @@ useEffect(() => {
     };
     console.log("location => " + JSON.stringify(location));
 
+    // Log the value of state.id
+    console.log("state.id => " + state.id);
+
     if (state.id === "_add") {
       LocationService.createLocation(location).then((res) => {
         navigate("/locations");
@@ -54,6 +60,8 @@ useEffect(() => {
       });
     }
   };
+
+
 
   const cancel = () => {
     navigate("/locations");
