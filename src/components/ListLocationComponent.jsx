@@ -8,14 +8,12 @@ function ListLocationComponent() {
   // Get the navigate function from the useNavigate hook
   const navigate = useNavigate();
 
-  const deleteLocation = (location) => {
-    console.log("Location to delete:", location); // Log the location value
-    LocationService.deleteLocation(location).then((res) => {
-      setLocations(
-        locations.filter((locationItem) => locationItem.location !== location)
-      );
+  const deleteLocation = (id) => {
+    LocationService.deleteLocation(id).then((res) => {
+      setLocations(locations.filter((location) => location.id !== id));
     });
   };
+
 
   const viewLocation = (location) => {
     navigate(`/view-location/${location}`);
@@ -56,29 +54,31 @@ function ListLocationComponent() {
             </tr>
           </thead>
           <tbody>
-            {locations.map((locationItem) => (
-              <tr key={locationItem.location}>
-                <td> {locationItem.astronomer} </td>
-                <td> {locationItem.location} </td>
-                <td> {locationItem.gps} </td>
-                <td> {locationItem.imageUrl} </td>
+            {locations.map((location) => (
+              <tr key={location.id}>
+                {" "}
+                {/* Add the key prop here */}
+                <td> {location.astronomer} </td>
+                <td> {location.location} </td>
+                <td> {location.gps} </td>
+                <td> {location.imageUrl} </td>
                 <td>
                   <button
-                    onClick={() => editLocation(locationItem.location)}
+                    onClick={() => editLocation(location.id)}
                     className="btn btn-info"
                   >
                     Update
                   </button>
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => deleteLocation(locationItem.location)}
+                    onClick={() => deleteLocation(location.id)}
                     className="btn btn-danger"
                   >
                     Delete
                   </button>
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => viewLocation(locationItem.location)}
+                    onClick={() => viewLocation(location.id)}
                     className="btn btn-info"
                   >
                     View

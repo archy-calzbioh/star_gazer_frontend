@@ -11,16 +11,15 @@ class LocationService {
     return axios.post(LOCATION_API_BASE_URL, location);
   }
 
-  getLocationByLocation(location) {
-    // Check if location is null or undefined
-    if (location === null || location === undefined) {
+  getLocationById(id) {
+    // Check if id is null or undefined
+    if (id === null || id === undefined) {
       // Return a rejected promise with an error message
-      return Promise.reject(new Error("Invalid location"));
+      return Promise.reject(new Error("Invalid id"));
     }
-    // Encode the location value to safely include it in the URL
-    const encodedLocation = encodeURIComponent(location);
-    return axios.get(LOCATION_API_BASE_URL + "/" + encodedLocation);
+    return axios.get(LOCATION_API_BASE_URL + "/" + id);
   }
+
 
   updateLocation(location, updatedLocationData) {
     // Check if location is null or undefined
@@ -36,15 +35,13 @@ class LocationService {
     );
   }
 
-  deleteLocation(location) {
-    // Check if location is null or undefined
-    if (location === null || location === undefined) {
+  deleteLocation(locationId) {
+    // Check if locationId is null or undefined
+    if (locationId === null || locationId === undefined) {
       // Return a rejected promise with an error message
-      return Promise.reject(new Error("Invalid location"));
+      return Promise.reject(new Error("Invalid locationId"));
     }
-    // Encode the location value to safely include it in the URL
-    const encodedLocation = encodeURIComponent(location);
-    return axios.delete(LOCATION_API_BASE_URL + "/" + encodedLocation);
+    return axios.delete(LOCATION_API_BASE_URL + "/" + locationId);
   }
 }
 
