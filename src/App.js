@@ -1,4 +1,4 @@
-import Container from "react-bootstrap/Container";
+import './App.css';
 import AstronomyPicture from './AstronomyPicture';
 import CloudCover from './CloudCover';
 import SolarActivityData from './SolarActivityData';

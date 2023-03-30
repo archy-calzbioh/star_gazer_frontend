@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './App.css';
 
 function SolarActivityData() {
   const [solarData, setSolarData] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.nasa.gov/DONKI/CME?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD&api_key=YOUR_API_KEY_HERE')
-      .then(response => response.json())
-      .then(data => setSolarData(data))
+    const today = new Date().toISOString().slice(0, 10);
+    const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+
+    axios.get(`https://api.nasa.gov/DONKI/CME?startDate=${threeDaysAgo}&endDate=${today}&api_key=fFek0AUwa9FcL7VJiAWIA0nDTi1AzsxcOgNNDtLL`)
+      .then(response => setSolarData(response.data))
       .catch(error => console.log(error));
   }, []);
 
