@@ -1,1 +1,5 @@
-Made with React, paste, and legos. 
+Frontend made with React. 
+
+HTTP requests handled by Axios. 
+
+Additional data provided by NASA apis. 
